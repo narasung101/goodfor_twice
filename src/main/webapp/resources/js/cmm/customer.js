@@ -36,7 +36,7 @@ customer = (()=>{
 		
 		$('#btn_customerView').click(e=>{
 			e.preventDefault()
-			alert('고객 클릭')
+			
 			$('body_main').empty()
 			brd.onCreate(2)
 			
@@ -45,7 +45,7 @@ customer = (()=>{
 		
 		$('#btn_customerView').click(e=>{
 			e.preventDefault()
-			alert('고객 클릭')
+			
 			$('body_main').empty()
 			brd.onCreate(3)
 						

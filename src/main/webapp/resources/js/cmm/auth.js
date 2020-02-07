@@ -3,7 +3,7 @@ var auth = auth || {};
 auth = (()=>{
 	const WHEN_ERR = '호출하는 JS파일을 찾지 못했습니다.'
 	let _, js, css, img, auth_vue_js,trading_vue_js,s_admin_vue_js,notice_vue_js,notice_js,s_admin_jsjs,trading_js
-		,brd_vue_js, brd_js, mypage_vue_js, mypage_js, stockinfo_vue_js, customer_js
+		,brd_vue_js, brd_js, mypage_vue_js, mypage_js, stockinfo_vue_js, customer_js, customer_vue_js
 	let router_js 
 	let init =()=> {
 		_=$.ctx()
@@ -24,6 +24,7 @@ auth = (()=>{
 		stockinfo_vue_js =js+'/vue/stockinfo_vue.js'
 		router_js = js + '/cmm/router.js'
 		customer_js = js+'/cmm/customer.js'
+		customer_vue_js = js+'/vue/customer_vue.js'
 	}
 	
 	let onCreate =()=>{
@@ -64,7 +65,7 @@ auth = (()=>{
 			$('#btn_notice').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
-				.html(brd_vue.brd_mainbody({css: $.css(), img: $.img()}))
+				.html(customer_vue.customer_body({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')				
 				customer.onCreate()
 			})

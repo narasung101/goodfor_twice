@@ -30,44 +30,8 @@ brd = (() => {
 		$('#body_main').empty()
 		
 		
-//		$('#btn_faqView').click(e=>{
-//				e.preventDefault()
-//				alert('자주하는 질문 클릭')
-//				$('#body_main').empty()			
-//				
-//				
-//			})
-//			
-//			$('#btn_customerView').click(e=>{
-//				e.preventDefault()
-//				alert('고객 클릭')
-//				$('#body_main').empty()
-//				brd.onCreate(2)
-//				
-//							
-//			})
-//			
-//			$('#btn_customerView').click(e=>{
-//				e.preventDefault()
-//				alert('고객 클릭')
-//				$('#body_main').empty()
-//				brd.onCreate(3)
-//				
-//								
-//			
-//			})
-//			
-//			$('#btn_noticeView').click(e=>{
-//				e.preventDefault()
-//				alert('공지사항 클릭')
-//				$('#body_main').empty()
-//				brd.onCreate(4)
-//				
-//			})
-		
-		
 		list({ctype: type, pageSize: 5, nowPage: 0})
-		toggleList()
+	
 		
 		//list({ pageSize: 5, nowPage: 0, option:$('#selectOption').val(), search: $('#search').val()})
 	
@@ -78,7 +42,7 @@ brd = (() => {
 		$.getJSON(_ + '/boards/list/'+x.ctype+'/'+x.pageSize+'/'+x.nowPage+'/'+x.option+'/'+x.search, d => {
 			
 			$('#body_main').empty()
-			toggleList(d)
+			
 					
 			$(`
 		<div class="container">
@@ -117,7 +81,7 @@ brd = (() => {
 		</div>
 		</div>
 		`).appendTo('#body_main')
-		console.log(d.list)
+		
 		write(type)
 			
 		$('#btn_list').click(e => {
@@ -228,7 +192,8 @@ brd = (() => {
 	}
 	
 	let toggleList =()=>{
-		$('#body_main').append(brd_vue.brd_head({css: $.css()}))
+		$('#body_main').empty()
+		$('#body_main').append(customer_vue.customer_head({css: $.css()}))
 
 		$(`
 		
@@ -490,5 +455,5 @@ brd = (() => {
 	
 	
 
-	return { onCreate, write }
+	return { onCreate, write, toggleList }
 })();

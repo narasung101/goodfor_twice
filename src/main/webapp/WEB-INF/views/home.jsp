@@ -37,7 +37,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/auth.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/mypage.js"></script>
-
+	<script src="<%=application.getContextPath()%>/resources/js/cmm/customer.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/notice.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/s_admin.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/trading.js"></script>
@@ -48,7 +48,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/s_admin02_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/s_admin03_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/s_admin04_vue.js"></script>
-	
+	<script src="<%=application.getContextPath()%>/resources/js/vue/customer_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/mypage_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/stockinfo_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/brd/brd.js"></script>
