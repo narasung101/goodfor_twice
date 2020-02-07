@@ -51,47 +51,47 @@ mypage = (()=>{
 	}
 	
 	let setContentView =()=>{
-			customerlist()
+//			customerlist()
 			
 		}
 
-		let customerlist =()=>{
-			$.getJSON(_ + '/customers/cuslist/'+sessionStorage.getItem('userno'), d =>{
-				
-				console.log(d)
-				$(`
-				<div id="wrapper">
-				<table id="cmain" border="1">
-				<thead id="chead">
-				<tr>
-				<th scope="col">#NO</th>
-				<th scope="col">제목</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성자</th>
-				<th scope="col">작성자</th>
-				</tr>
-				</thead>
-				<tbody id="cbody">
-				</tbody>
-				</table>
-				</div>
-				`).appendTo('#myTabContent')
-
-		$.each(d.cuslist, (i, j) => {
-			var tr = $(`<tr></tr>`).appendTo("#cbody");
-				$(`<td></td>`).text(j.cid).appendTo(tr);
-				$(`<td><a href="#">${j.cpw}</a></td>`).appendTo(tr)
-				$(`<td></td>`).text(j.cname).appendTo(tr);
-				$(`<td></td>`).text(j.email).appendTo(tr);
-				$(`<td></td>`).text(j.pnumber).appendTo(tr);
-				$(`<td></td>`).text(j.invest).appendTo(tr);
-				$(`<td></td>`).text(j.rating).appendTo(tr);
-				})
-			})
-		}
+//		let customerlist =()=>{
+//			$.getJSON(_ + '/customers/cuslist/'+sessionStorage.getItem('userno'), d =>{
+//				
+//				console.log(d)
+//				$(`
+//				<div id="wrapper">
+//				<table id="cmain" border="1">
+//				<thead id="chead">
+//				<tr>
+//				<th scope="col">#NO</th>
+//				<th scope="col">제목</th>
+//				<th scope="col">작성자</th>
+//				<th scope="col">작성자</th>
+//				<th scope="col">작성자</th>
+//				<th scope="col">작성자</th>
+//				<th scope="col">작성자</th>
+//				<th scope="col">작성자</th>
+//				</tr>
+//				</thead>
+//				<tbody id="cbody">
+//				</tbody>
+//				</table>
+//				</div>
+//				`).appendTo('#myTabContent')
+//
+//		$.each(d.cuslist, (i, j) => {
+//			var tr = $(`<tr></tr>`).appendTo("#cbody");
+//				$(`<td></td>`).text(j.cid).appendTo(tr);
+//				$(`<td><a href="#">${j.cpw}</a></td>`).appendTo(tr)
+//				$(`<td></td>`).text(j.cname).appendTo(tr);
+//				$(`<td></td>`).text(j.email).appendTo(tr);
+//				$(`<td></td>`).text(j.pnumber).appendTo(tr);
+//				$(`<td></td>`).text(j.invest).appendTo(tr);
+//				$(`<td></td>`).text(j.rating).appendTo(tr);
+//				})
+//			})
+//		}
 	
 	return {onCreate}
 })();

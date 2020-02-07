@@ -119,7 +119,7 @@ mypage_vue = {
 		                    <div class="col-md-6">
 		                        <div class="profile-head">
 		                                    <h5>
-		                                       ${sessionStorage.getItem('cname')}
+		                                  
 		                                    </h5>
 		                                    <h6>
 		                                        Web Developer and Designer
@@ -154,6 +154,9 @@ mypage_vue = {
 		                            <a href="">PHP, .Net</a><br/>
 		                        </div>
 		                    </div>
+		                    
+		                    
+		                    
 		                    <div class="col-md-8">
 		                        <div class="tab-content profile-tab" id="myTabContent">
 		                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -162,7 +165,7 @@ mypage_vue = {
 		                                                <label>User Id</label>
 		                                            </div>
 		                                            <div class="col-md-6">
-		                                                <p>Kshiti123</p>
+		                                                <p>${sessionStorage.getItem('cid')}</p>
 		                                            </div>
 		                                        </div>
 		                                        <div class="row">
@@ -170,7 +173,7 @@ mypage_vue = {
 		                                                <label>Name</label>
 		                                            </div>
 		                                            <div class="col-md-6">
-		                                                <p>Kshiti Ghelani</p>
+		                                                <p>${sessionStorage.getItem('cname')}</p>
 		                                            </div>
 		                                        </div>
 		                                        <div class="row">
@@ -178,7 +181,7 @@ mypage_vue = {
 		                                                <label>Email</label>
 		                                            </div>
 		                                            <div class="col-md-6">
-		                                                <p>kshitighelani@gmail.com</p>
+		                                                <p>${sessionStorage.getItem('cmail')}</p>
 		                                            </div>
 		                                        </div>
 		                                        <div class="row">
@@ -186,17 +189,26 @@ mypage_vue = {
 		                                                <label>Phone</label>
 		                                            </div>
 		                                            <div class="col-md-6">
-		                                                <p>123 456 7890</p>
+		                                                <p>${sessionStorage.getItem('pnumber')}</p>
 		                                            </div>
 		                                        </div>
 		                                        <div class="row">
 		                                            <div class="col-md-6">
-		                                                <label>Profession</label>
+		                                                <label>invest</label>
 		                                            </div>
 		                                            <div class="col-md-6">
-		                                                <p>Web Developer and Designer</p>
+		                                                <p>${sessionStorage.getItem('invest')}</p>
 		                                            </div>
 		                                        </div>
+		                                          <div class="row">
+		                                            <div class="col-md-6">
+		                                                <label>rating</label>
+		                                            </div>
+		                                            <div class="col-md-6">
+		                                                <p>${sessionStorage.getItem('rating')}</p>
+		                                            </div>
+		                                        </div>
+		                                        
 		                            </div>
 		                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 		                                        <div class="row">
