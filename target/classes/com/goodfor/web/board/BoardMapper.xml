@@ -10,54 +10,52 @@
 		SELECT COUNT(*)	COUNT FROM BOARD WHERE CTYPE LIKE #{value}
 	</select>
 	
-	<select id="selectAllBoardFAQ" resultType="Board"
-		parameterType="PageProxy">
+	<select id="selectAllBoardFAQ" resultType="Board">
 		SELECT A.*
 		FROM (SELECT * FROM BOARD 
 		ORDER BY SEQ DESC LIMIT #{startRow}, #{pageSize}) A
 		WHERE CTYPE LIKE #{ctype}
 	</select>
 	
-	<select id="selectAllBoardCustomer" resultType="Board"
-		parameterType="PageProxy">
+	<select id="selectAllBoardCustomer" resultType="Board">
 		SELECT A.*
 		FROM (SELECT * FROM BOARD 
 		ORDER BY SEQ DESC LIMIT #{startRow}, #{pageSize}) A
 		WHERE CTYPE LIKE #{ctype}
 	</select>
 	
-	<select id="selectAllBoardNotice" resultType="Board"
-		parameterType="PageProxy">
+	<select id="selectAllBoardNotice" resultType="Board">
 		SELECT A.*
 		FROM (SELECT * FROM BOARD 
 		ORDER BY SEQ DESC LIMIT #{startRow}, #{pageSize}) A
 		WHERE CTYPE LIKE #{ctype}
 	</select>
 	
-	<insert id="insertBoardWrite" parameterType="Board">
+	<insert id="insertBoardWrite">
 		INSERT INTO
 		BOARD(title, content, writer, ctype)
 		VALUES (#{title},#{content}, #{writer}, #{ctype})
 	</insert>	
 		
-	<select id="selectBoardRead" parameterType="int"
-		resultType="Board">
+	<select id="selectBoardRead" resultType="Board">
 		SELECT * FROM BOARD WHERE SEQ LIKE #{seq}
-		
 	</select>
+	
+	<update id="viewCntIncrease">
+	UPDATE BOARD SET VIEWCNT = VIEWCNT +1 WHERE SEQ = #{seq}
+	</update>
 
-	<update id="updateBoard" parameterType="Board">
+	<update id="updateBoard">
 		UPDATE BOARD
 		SET TITLE =	#{title}, CONTENT = #{content}
 		WHERE SEQ LIKE #{seq}
 	</update>
 
-	<delete id="deleteBoard" parameterType="int">
+	<delete id="deleteBoard">
 		DELETE FROM BOARD WHERE SEQ LIKE #{seq}
 	</delete>
 
-	<select id="listPage" resultType="Board"
-		parameterType="PageProxy">
+	<select id="listPage" resultType="Board">
 		select * from board order by seq desc limit #{pageSize}
 	</select>
 	</mapper>

@@ -47,84 +47,81 @@ auth = (()=>{
 			
 		).done(()=>{
 			setContentView()
-			
-			$('#btn_main').click(e=>{
-				e.preventDefault()
-				$('#btn_main').empty()
-				.html(auth_vue.auth_body({css: $.css(), img: $.img()}))
-				onCreate()
-			})
-			$('#btn_trading').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(trading_vue.trading_mainbody({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')
-				trading.onCreate()
-			})
-			
-			$('#btn_notice').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(customer_vue.customer_body({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')				
-				customer.onCreate()
-			})
-			
-			$('#btn_admin').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(s_admin01_vue.admin01_body({css: $.css(), img: $.img(), ctx: $.ctx()}))
-				.appendTo('#body_main')
-				s_admin.onCreate()
-			})
-			
-			$('#btn_admin').click(e=>{
+			pageMove()			
+		
+		})
+	}
+	let setContentView =()=>{
+		$('body').html(auth_vue.main({css: $.css(), img: $.img()}))
+	}
+	
+	let pageMove =()=>{
+		$('#btn_main').click(e=>{
+			e.preventDefault()
+			$('#btn_main').empty()
+			.html(auth_vue.main({css: $.css(), img: $.img()}))
+			onCreate()
+		})
+		$('#btn_trading').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(trading_vue.trading_mainbody({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')
+			trading.onCreate()
+		})
+		
+		$('#btn_customer').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(customer_vue.customer_body({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')				
+			customer.onCreate()
+		})
+		
+		$('#btn_admin').click(e=>{
 			e.preventDefault()
 			$('#body_main').empty()
 			.html(s_admin01_vue.admin01_body({css: $.css(), img: $.img(), ctx: $.ctx()}))
 			.appendTo('#body_main')
 			s_admin.onCreate()
-			})
-			
-			$('#btn_stockinfo').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(stockinfo_vue.stockinfo_body({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')
-			})
-			$('#btn_mypage').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(mypage_vue.main({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')
-				mypage.onCreate()
-			})
-			$('#btn_loginForm').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(auth_vue.login({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')
-				login()
-			})
-			$('#btn_joinForm').click(e=>{
-				e.preventDefault()
-				$('#body_main').empty()
-				.html(auth_vue.join({css: $.css(), img: $.img()}))
-				.appendTo('#body_main')
-				join()
-			})
+		})		
+		
+		$('#btn_stockinfo').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(stockinfo_vue.stockinfo_body({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')
+		})
+		$('#btn_mypage').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(mypage_vue.main({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')
+			mypage.onCreate()
+		})
+		$('#btn_loginForm').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(auth_vue.login({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')
+			login()
+		})
+		$('#btn_joinForm').click(e=>{
+			e.preventDefault()
+			$('#body_main').empty()
+			.html(auth_vue.join({css: $.css(), img: $.img()}))
+			.appendTo('#body_main')
+			join()
 		})
 	}
-	let setContentView =()=>{
-		$('body').html(auth_vue.auth_body({css: $.css(), img: $.img()}))
-	}
+	
+	// 비밀번호 정규식
+	var pwJ = /^[A-Za-z0-9]{2,12}$/;
+	// 이름 정규식
+	var nameJ = /^[가-힣]{1,10}$/;
 	
 	let join =()=>{	
-		//아이디 정규식
-		var idJ = /^[a-z0-9]{2,12}$/;
-		// 비밀번호 정규식
-		var pwJ = /^[A-Za-z0-9]{2,12}$/;
-	
+		
 		existId()
 		
 //		$('#join_cid').blur(function(){
@@ -148,6 +145,16 @@ auth = (()=>{
 				$('#pw2_check').text('비밀번호가 틀립니다. 다시 입력하세요').css('color','red')
 			}
 		})
+		
+		$('#join_userName').blur(function(){
+			if(nameJ.test($('#join_userName').val())){
+				$('#name_check').text('')
+			}else{
+				$('#name_check').text('이름을 다시 확인해주세요.')
+				$('#name_check').css('color','red')
+			}
+		})
+		
 	      		
 		$('#btn_join').click(e=>{
 			e.preventDefault()
@@ -169,7 +176,8 @@ auth = (()=>{
 			success: d => {
 				alert('AJAX성공')
 				if (d.msg === 'success') {
-					$('body').html(auth_vue.auth_body({css: $.css(), img: $.img()}))
+					$('body').html(auth_vue.main({css: $.css(), img: $.img()}))
+					onCreate()
 					
 				} else {
 					alert('회원가입 실패')
@@ -206,13 +214,24 @@ auth = (()=>{
 					let t = d.customer
 					console.log(t)
 					$.extend(new Customer(t))
+					
+					const logout_btn= $(`<div id="btn_logout" style="display:inline-block;width:15%;color:white;font-size:15px">로그아웃</div>`)
+					$('#btn_loginForm').replaceWith(logout_btn) 
+					
 					$('#body_main').empty()
-					$('#s-header').empty()
-					$('#s-header').html(auth_vue.auth_header({css: $.css(), img: $.img()}))
-					// .appendTo('#s-header')
+					$('#body_main').html(auth_vue.body({css: $.css(), img: $.img()}))
+				
+					logout()
+					// edit_mypage에 t 값을 넘겨 글쓰기 수정 삭제를 구현 
+					
+//				$(`<div id="btn_logout" style="display:inline-block;width:15%;color:white;font-size:15px">로그아웃</div>`)
+//					$('#body_main').empty()
+//					$('#s-header').empty()
+//					$('#s-header').html(auth_vue.auth_header({css: $.css(), img: $.img()}))
+//					.appendTo('#s-header')
 					alert(`세션 스토리지 저장된 값 ${sessionStorage.getItem('cid')}`)	
 				
-				}else{$('span[class="duple_cid"]').text('아이디를 다시 확인해주세요').css('color','red')}								
+					}else{$('span[class="duple_cid"]').text('아이디를 다시 확인해주세요').css('color','red')}								
 
 			},
 			error: e => {
@@ -226,18 +245,28 @@ auth = (()=>{
 	
 	let existId =()=>{
 		$('#join_cid').keyup(()=>{
-			if($('#join_cid').val().length >= 3){
+			if($('#join_cid').val().length >= 1){
 				$.getJSON(_ + '/customers/existid/'+$('#join_cid').val(), d=>{
 					
 					if(d.msg === 'y'){
-						$('#id_check2').text('이미 존재하는 아이디입니다').css({color : 'tomato'})
+						$('#id_check').text('이미 존재하는 아이디입니다').css({color : 'red'})
 					}else{
-						$('#id_check2').text('가입 가능한 아이디입니다.').css({color : 'blue'})
+						$('#id_check').text('가입 가능한 아이디입니다.').css({color : 'blue'})
 					}
 				})
 			}
 		})
 	}
+	let logout =()=>{
+		$('#btn_logout').click((e)=>{
+			e.preventDefault()
+			alert('로그아웃 클릭')
+			sessionStorage.removeItem('cid')
+			sessionStorage.clear()
+			app.run(_)
+		})
+	}
+
 	return {onCreate}	
 	
 })();

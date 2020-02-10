@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface CustomerService {
-	public int customerCount();
-	public void insertCustomerJoin(Customer param);
-	public int selectExistId(String cid);
-	public Customer selectCustomerLogin(Customer param);
-	public List<Customer> selectAllCustomer();
+//	public int customerCount();
+//	public void insertCustomerJoin(Customer param);
+//	public int selectExistId(String cid);
+//	public Customer selectCustomerLogin(Customer param);
+//	public List<Customer> selectAllCustomer();
 }

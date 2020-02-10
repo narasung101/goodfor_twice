@@ -23,7 +23,6 @@ function Session(x){
 		
 		return {
 			cid : ()=>{return sessionStorage.getItem('cid');},
-			cpw : ()=>{return sessionStorage.getItem('cpw');},
 			cname : ()=>{return sessionStorage.getItem('cname');},
 			email : ()=>{return sessionStorage.getItem('email');},
 			pnumber : ()=>{return sessionStorage.getItem('pnumber');},

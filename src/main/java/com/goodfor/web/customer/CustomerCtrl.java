@@ -66,18 +66,18 @@ public class CustomerCtrl {
 				
 	}
 	
-	@GetMapping("/cuslist/{cid}")
-	public Map<?, ?> customerList(@PathVariable String cid){
-		System.out.println("customerList 진입");
-		List<Customer> cuslist = service.selectAllCustomer();
-		System.out.println("service가 불러온 값" + cuslist.size());
-		map.clear();
-		map.put("msg", "success");
-		map.put("cuslist", cuslist);
-		
-		return map;
-		
-	}	
+//	@GetMapping("/cuslist/{cid}")
+//	public Map<?, ?> customerList(@PathVariable String cid){
+//		System.out.println("customerList 진입");
+//		List<Customer> cuslist = service.selectAllCustomer();
+//		System.out.println("service가 불러온 값" + cuslist.size());
+//		map.clear();
+//		map.put("msg", "success");
+//		map.put("cuslist", cuslist);
+//		
+//		return map;
+//		
+//	}	
 	
 
 }

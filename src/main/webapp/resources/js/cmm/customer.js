@@ -16,7 +16,8 @@ customer = (()=>{
 		init();
 		$.when(
 			$.getScript(brd_vue_js),
-			$.getScript(brd_js)
+			$.getScript(brd_js),
+			$.getScript(customer_vue_js)
 		)
 		.done(()=>{
 			brd_move()	

@@ -11,7 +11,7 @@ brd_vue = {
 	`
 	},
 
-	write: function (x) {
+	write_form: function (x) {
 		return `<div class="container-fluid" style="width:80%">
 		<h1>글 작성</h1>
 		<form id="write_form">
@@ -19,7 +19,8 @@ brd_vue = {
 		<input type="text" name="title" style="margin-top:10px" class="form-control" placeholder="제목" />
 		</div>
 		<div>
-		<input type="text" name="writer" style="margin-top:10px" class="form-control" placeholder="작성자 ID" />
+		<input type="text" value="${sessionStorage.getItem('cid')}" name="writer" style="margin-top:10px" class="form-control" placeholder="작성자 ID" />
+		
 		</div>
 		<div>
 		<input id="type" type="hidden" name="ctype" value="${x.type}" style="margin-top:10px" class="form-control" placeholder="작성자 ID" />
@@ -30,7 +31,7 @@ brd_vue = {
 		 </div>
 		 </div>
 		
-		<input id="btn_write" type="submit" class="btn btn-primary"  value="글쓰기"/>
+		<input id="btn_write_submit" type="submit" class="btn btn-primary"  value="확인"/>
 		<input id="btn_cancel" type="reset" class="btn btn-danger" value="취소"/>
 		<input id="add_file" type="button" class="btn btn-primary"  value="파일첨부"/>
 		
@@ -39,29 +40,7 @@ brd_vue = {
 		</div>`
 	},
 	
-	content: function () {
-		return `<div class="container-fluid" style="width:80%">
-		<h1>글 내용</h1>
-		<form id="content_form">
-		<div>
-		제목 : <input type="text" name="title" style="margin-top:10px" class="form-control" placeholder="제목" readonly="readonly" />
-		</div>
-		<div>
-		작성자 : <input type="text" name="writer" style="margin-top:10px" class="form-control" placeholder="작성자 ID" readonly="readonly" />
-		</div>
-		<div class="row">
-		<div style="width:97%; margin:10px auto" >
-		글 내용 : <textarea name="content" class="form-control" rows="10" readonly="readonly"></textarea>
-		 </div>
-		 </div>
-	        <button id="btn_updateForm">수정</button> 
-			<button id="btn_backList1">목록</button> 
-		</div>
-		</form>
-		</div>`
-	},
-	
-	update: (x)=> {
+	update_form: (x)=> {
 		return `<div class="container-fluid" style="width:80%">
 		<h1>글 수정</h1>
 		<form id="update_form">
@@ -79,12 +58,41 @@ brd_vue = {
          <div>
           <input type="file" id="btn_fileUpload" value="파일 업로드"/> 
          </div>
-         <button id="btn_updateWrite">등록 완료</button> 
-         <button id="btn_deleteWrite">삭제</button>
-		 <button id="btn_backList2">목록</button> 
+         <button id="btn_updateWrite">수정 완료</button> 
+         
 				
 		</div>
 		</form>
 		</div>`
-	}
+	},
+	
+	content_form: function () {
+		return `<div class="container-fluid" style="width:80%">
+		<h1>글 내용</h1>
+		<form id="content_form">
+		<div>
+		 <input type="text" name="title" style="margin-top:10px" class="form-control" placeholder="제목" readonly="readonly" />
+		</div>
+		<div>
+		 <input type="text" name="writer" style="margin-top:10px" class="form-control" placeholder="작성자 ID" readonly="readonly" />
+		</div>
+		<div class="row">
+		<div style="width:97%; margin:10px auto" >
+		 <textarea name="content" class="form-control" rows="10" readonly="readonly"></textarea>
+		 </div>
+		 </div>
+		 
+		 댓글 폼 구현
+
+		 	 <button id="btn_writeForm">글쓰기</button> 
+		 	 <button id="btn_replyForm">답글</button> 
+		 	  <button id="btn_updateForm">수정</button> 
+	        <button id="btn_delete">삭제</button> 
+			<button id="btn_listback">목록</button> 
+		</div>
+		</form>
+		</div>`
+	},
+	
+	
 } 

@@ -1,5 +1,7 @@
 package com.goodfor.web.board;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Component
 public class Board {
-	//
-	private String seq, writer, ctype, title, content, credate, modidate, attfile;
+	private int seq, viewcnt;
+	private String writer, ctype, title, content, attfile;
+	private Date credate, modidate;
+	
 	
 }

@@ -8,8 +8,7 @@ customer_vue = {
 		},
 		customer_body : x=>{
 			return `
-			
-			
+						
 			<body>
 						
 				  <style type="text/css">
@@ -45,13 +44,9 @@ customer_vue = {
 					
 				      <div class="col-lg-3 col-md-6 mb-4">
 				        <div class="card h-100">
-				          <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1660/1660114.svg" alt="" class="img-fluid">
+				          <img class="card-img-top" src="${x.img}/faq.png" alt="" class="img-fluid">
 				          <div class="card-body">
 				            <h4 class="card-title">자주하는질문</h4>
-<!-- 체크박스 하는것 보류 해제 
-				            <input name="faq" type="checkbox" value="1" />자주하는질문 
-				            
-  -->
 				            <p class="card-text"></p>
 				          </div>
 				          <div class="card-footer">
@@ -62,7 +57,7 @@ customer_vue = {
 				
 				      <div class="col-lg-3 col-md-6 mb-4">
 				        <div class="card h-100">
-				        <img class="card-img-top" src="https://image.flaticon.com/icons/svg/561/561127.svg" alt="">
+				        <img class="card-img-top" src="${x.img}/email.png" alt="">
 				           <div class="card-body">
 				            <h4 class="card-title">문의/제안</h4>
 				            
@@ -76,7 +71,7 @@ customer_vue = {
 				
 				      <div class="col-lg-3 col-md-6 mb-4">
 				        <div class="card h-100">
-				          <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1069/1069159.svg" alt="">
+				          <img class="card-img-top" src="${x.img}/customer.png" alt="">
 				          <div class="card-body">
 				            <h4 class="card-title">고객게시판</h4>
 				            
@@ -90,7 +85,7 @@ customer_vue = {
 				      
 				       <div class="col-lg-3 col-md-6 mb-4">
 				        <div class="card h-100">
-				          <img class="card-img-top" src="https://image.flaticon.com/icons/svg/482/482598.svg" alt="">
+				          <img class="card-img-top" src="${x.img}/notice.png" alt="">
 				          <div class="card-body">
 				            <h4 class="card-title">공지사항</h4>
 				            
