@@ -14,7 +14,6 @@ function Session(x){
 
 	function Customer(t){
 		sessionStorage.setItem('cid',t.cid);
-		sessionStorage.setItem('cpw',t.cpw);
 		sessionStorage.setItem('cname',t.cname);
 		sessionStorage.setItem('email',t.email);
 		sessionStorage.setItem('pnumber',t.pnumber);

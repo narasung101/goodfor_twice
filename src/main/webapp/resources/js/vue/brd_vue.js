@@ -12,7 +12,7 @@ brd_vue = {
 	},
 
 	write_form: function (x) {
-		return `<div class="container-fluid" style="width:80%">
+		return `<div class="container">
 		<h1>글 작성</h1>
 		<form id="write_form">
 		<div>
@@ -41,7 +41,7 @@ brd_vue = {
 	},
 	
 	update_form: (x)=> {
-		return `<div class="container-fluid" style="width:80%">
+		return `<div class="container">
 		<h1>글 수정</h1>
 		<form id="update_form">
 		<div>

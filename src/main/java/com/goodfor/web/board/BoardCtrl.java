@@ -1,5 +1,6 @@
 package com.goodfor.web.board;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +47,9 @@ public class BoardCtrl extends Proxy {
 	public Map<?, ?> write(@RequestBody Board param) {
 		System.out.println("글쓰기 param값 넘어옴 :" + param);
 		
+		SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+		param.setCredate(day);
+		System.out.println("day의 값은?"+day);
 		Consumer<Board> consumer = t -> boardMapper.insertBoardWrite(t);
 		consumer.accept(param);
 		box.clear();
