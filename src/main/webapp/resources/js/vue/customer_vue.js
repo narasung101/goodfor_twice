@@ -35,9 +35,7 @@ customer_vue = {
 				     <!-- 점보트론 바로가기 버튼 삭제 <a href="#" class="btn btn-primary btn-lg">바로가기!</a> -->
 				    </div>
 				
-				    <!-- Page Features -->
-				    
-				  			
+				    <!-- Page Features -->			  			
 				
     
 	<div class="row text-center">

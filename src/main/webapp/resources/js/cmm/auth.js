@@ -43,7 +43,8 @@ auth = (()=>{
 			$.getScript(mypage_js),
 			$.getScript(stockinfo_vue_js),
 			$.getScript(router_js),
-			$.getScript(customer_js)
+			$.getScript(customer_js),
+			$.getScript(customer_vue_js)
 			
 		).done(()=>{
 			setContentView()

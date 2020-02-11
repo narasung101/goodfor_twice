@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Board {
 	private int seq, viewcnt;
 	private String writer, ctype, title, content, attfile;
-	private SimpleDateFormat credate, modidate;
+	private String credate, modidate;
 	
 	
 }

@@ -136,7 +136,7 @@ brd = (() => {
 				});
 				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.writer).appendTo(tr);
 				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.credate).appendTo(tr);
-				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.viwecnt).appendTo(tr);
+				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.viewcnt).appendTo(tr);
 
 			})
 		
@@ -247,40 +247,57 @@ brd = (() => {
 			
 					
 			$(`
-			
+		<style>
+		#ContentPlaceHolder1_div_wts p span {
+			color: #179ede;
+			font-size: 16px;
+			font-family: "맑은고딕","Malgun Gothic","돋움", "dotum", "verdana", sans-serif;
+		    line-height: 20px;
+		    letter-spacing: -1px;		
+		} 
+		</style>
+		
 		<div class="container">
 		<div id="wrapper">
-		<h1 id="btn_customerGo">공지사항</h2>
-	
-		<div id="search_form">
+		
+		<h1 id="btn_customerGo" style="margin-bottom: 20px;"><img src="${x.img}/notice.png" style="width: 30px;">&nbsp;&nbsp;공지사항</h2>
+		
+		<div id="ContentPlaceHolder1_div_wts" class="alert alert-light" role="alert" style="margin-bottom: 20px;">
+				<p style="font-size: large;">고객님의 <span>궁금한 사항</span>을 <span>빠르고 친절하게</span> 처리해 드립니다. </p>
+				<p class="lineTxt" style="font-size: small">굿포를 이용하시는데 불편하신 사항이나 의견이 있으시면 말씀해주세요. 고객님의 의견을 적극 반영하여 개선하도록 하겠습니다. </p>
+		</div>
+		
+		<div id="page_sizeForm" class="btn btn-default pull-left" style="font-size: small;padding-right: 0px;">
+		</div>
+		<div id="search_form" class="btn btn-default pull-right" style="font-size: small;padding-right: 0px;">
 		
 		</div>
 
-		<table class="table table-striped" border="1">
-						
+		<table class="table table-striped">
+				
 			<thead>
-				<tr>
-					<th>제목</th>
-					<th>작성일</th>
-					<th>조회</th>
+				<tr style="text-align:center; font-size: 13px;">
+					<th width="10%">번호</th>
+					<th width="30%">제목</th>
+					<th width="10%">작성자</th>
+					<th width="10%">작성일</th>
+					<th width="10%">조회</th>
 				</tr>
 			</thead>
 			
 			<tbody>
 			
 			</tbody>
-			
 		</table>
 
+		
 			<div>
-				<ul class="pagination" id="page_form" style="justify-content: center; font-size: 13px;">
+				<ul class="pagination" id="page_form" style="justify-content: center; margin-bottom: 0px; font-size: 13px;">
 				</ul>
 			</div>
 
-		<div id="page_size_form">
-		
-		</div>
-		<button id="btn_brd" class="btn btn-default pull-right" style="border: solid 1px; width: 77px;">글쓰기</button>
+				
+		<button id="btn_brd" class="btn btn-default pull-right" style="border: solid 1px #ddd; width: 77px; font-size: 13px;">글쓰기</button>
 		
 		</div>
 		</div>
@@ -290,8 +307,9 @@ brd = (() => {
 			
 		$('#btn_list').click(e => {
 		e.preventDefault()
+		$('#crawlTab').empty()
 		$('#tmain').empty()
-		 list({ ctype: type, pageSize: 5, nowPage: 0 })
+		list({ctype: type, pageSize: 5, nowPage: 0, img: $.img()})
 		// list({ pageSize: 5, nowPage: 0, option:$('#selectOption').val(),
 		// search: $('#search').val()})
 		
@@ -300,8 +318,8 @@ brd = (() => {
 			$.each(d.list, (i, j) => {
 				console.log(d.list)
 				var tr = $(`<tr></tr>`).appendTo("tbody");
-				
-				$(`<td><a href="#">${j.title}</a></td>`).appendTo(tr)
+				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.seq).appendTo(tr);
+				$(`<td style="text-align:center; font-size: 13px;"><a href="#">${j.title}</a></td>`).appendTo(tr)
 				.click(e=>{
 					e.preventDefault()
 					alert('seq 확인'+ j.seq)
@@ -311,18 +329,22 @@ brd = (() => {
 						content(d)						
 					})
 				});
-				$(`<td></td>`).text(j.credate).appendTo(tr);
-				$(`<td></td>`).text(j.viwecnt).appendTo(tr);
+				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.writer).appendTo(tr);
+				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.credate).appendTo(tr);
+				$(`<td style="text-align:center; font-size: 13px;"></td>`).text(j.viewcnt).appendTo(tr);
 
 			})
 		
 			if (d.pager.existPrev) {
-				$(`<span style="border:1px solid black; padding-left: 5px; padding-right: 5px; class="btn-page">이전</span>`)
+				$(`<li class="page-item">
+					      <a href="#">이전</a>
+				</li>`)
+//				$(`<span style="border:1px solid black; padding-left: 5px; padding-right: 5px; class="btn-page">이전</span>`)
 					.appendTo('#page_form')
 					.click((e) => {
 						e.preventDefault()
 						alert('이전 페이지 클릭' + d.pager.prevBlock)
-						 list({ ctype: type, pageSize: 5, nowPage: d.pager.prevBlock })
+						list({ctype: type, pageSize: 5, nowPage: d.pager.prevBlock, img: $.img()})
 						//list({pageSize:5, nowPage:d.pager.prevBlock})
 					
 					})
@@ -333,37 +355,31 @@ brd = (() => {
 				blocks.push(i)
 
 			}
-//			<div class="text-center">
-//			<ul class="pagination">
-//				<li><a href="#">1</a></li>
-//				<li><a href="#">2</a></li>
-//				<li><a href="#">3</a></li>
-//				<li><a href="#">4</a></li>
-//				<li><a href="#">5</a></li>
-//			</div>
-			
+
 			$.each(blocks, (i, j) => {
-//				$(`<span style="border:1px solid black; padding-left: 5px; padding-right: 5px; class="btn-page"><a href="">${j}</a></span>`)
 				$(`<li class="page-item">
-				   <a href="#">${j}</a>
-					</li>`)
-				.appendTo('#page_form')
+					      <a href="#">${j}</a>
+				</li>`)
+					.appendTo('#page_form')
 					.click(function (e) {
 						e.preventDefault()
 						alert('a링크 클릭' + $(this).text())
 						
-						 list({ ctype: type, pageSize: 5, nowPage: (Number($(this).text()) - 1) })
+						 list({ ctype: type, pageSize: 5, nowPage: (Number($(this).text()) - 1), img: $.img() })
 					   // list({pageSize: 5, nowPage: (Number($(this).text()) - 1), option:$('#selectOption').val(), search: $('#search').val()})
 
 					})
 			})
 			if (d.pager.existNext) {
-				$(`<span style="border:1px solid black; padding-left: 5px; padding-right: 5px; class="btn-page">다음</span>`)
+				$(`<li class="page-item">
+					      <a href="#">다음</a>
+				</li>`)
+//				$(`<span style="border:1px solid black; padding-left: 5px; padding-right: 5px; class="btn-page">다음</span>`)
 					.appendTo('#page_form')
 					.click(function (e) {
 						e.preventDefault()
 						alert('다음 페이지 클릭' + d.pager.nextBlock)
-						 list({ ctype: type, pageSize: 5, nowPage: d.pager.nextBlock })
+						 list({ ctype: type, pageSize: 5, nowPage: d.pager.nextBlock, img: $.img() })
 						// list({pageSize: 5, nowPage: d.pager.nextBlock, option:$('#selectOption').val(), search: $('#search').val()})
 
 					})
@@ -377,38 +393,38 @@ brd = (() => {
 		$(`
 				
 		<form>
-		 <select id="pageSize">
+		 <select id="pageSize" class="btn btn-default" style="border: solid 1px #ddd; font-size: 13px;">
 		  <option value="5">5개씩 </option>
 		  <option value="10">10개씩</option>
 		  <option value="15">15개씩</option>
 		</select>
-		<input id="btn_page_size" type="submit" value="보기">
+		<input id="btn_page_size" type="submit" value="보기" class="btn btn-default" style="border: solid 1px #ddd; font-size: 13px;"/>
 		</form>
 			
-		`).appendTo('#page_size_form')
+		`).appendTo('#page_sizeForm')
 	
 		
 			$('#btn_page_size').click(e => {
 				e.preventDefault()
-				list({ ctype: type, pageSize: $('#pageSize').val(), nowPage: 0 })
+				list({ ctype: type, pageSize: $('#pageSize').val(), nowPage: 0, img: $.img() })
 				 //list({ pageSize: $('#pageSize').val(), nowPage: 0, option:$('#selectOption').val(), search: $('#search').val() })
 			})
 			
 		 $(`
-		 <select id="selectOption">
+		 <select id="selectOption" class="btn btn-default" style="border: solid 1px #ddd; font-size: 13px;">
 		  <option value="title">제목</option>
 		  <option value="content">내용</option>
 		  <option value="writer">작성자</option>
 		</select>
 	
-		 <input type="text" id="search"/>	 	
-		 <input id="btn_search" type="submit" value="입력"/> 
+		 <input type="text" id="search" class="btn btn-default" style="border: solid 1px #ddd; font-size: small;"/>	 	
+		 <input id="btn_search" type="submit" value="입력" class="btn btn-default" style="border: solid 1px #ddd; font-size: 13px;"/> 
 		 `)
 		 .appendTo('#search_form')
 		  $('#btn_search').click(e=>{
 			 e.preventDefault()
 			 alert('서치' + $('#search').val()+", 옵션:"+$('#selectOption').val())
-			 list({ ctype:type, pageSize: 5, nowPage: 0, option:$('#selectOption').val(), search: $('#search').val() })
+			 list({ ctype:type, pageSize: 5, nowPage: 0, option:$('#selectOption').val(), search: $('#search').val(), img: $.img() })
 			 //list({ pageSize: 5, nowPage: 0, option:$('#selectOption').val(), search: $('#search').val() })
 			
 		 })
@@ -500,9 +516,13 @@ brd = (() => {
 			
 		$('#btn_brd').click((e) => {
 			e.preventDefault()
+			// if로 로그인 했을때 화면을 보여주고 아니면 alert창 띄어준다.
+//			if(){
+//				
+//			}
 						
 			$('#body_main').empty()
-			$('#body_main').html(brd_vue.write_form({type:x}))		
+			$('#body_main').append(brd_vue.write_form({type:x}))		
 				
 			$('#btn_write_submit').click(e => {
 				e.preventDefault()

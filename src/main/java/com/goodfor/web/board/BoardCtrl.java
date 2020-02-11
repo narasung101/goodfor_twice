@@ -2,6 +2,7 @@ package com.goodfor.web.board;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,10 +47,7 @@ public class BoardCtrl extends Proxy {
 	@PostMapping("/")
 	public Map<?, ?> write(@RequestBody Board param) {
 		System.out.println("글쓰기 param값 넘어옴 :" + param);
-		
-		SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
-		param.setCredate(day);
-		System.out.println("day의 값은?"+day);
+
 		Consumer<Board> consumer = t -> boardMapper.insertBoardWrite(t);
 		consumer.accept(param);
 		box.clear();
@@ -85,8 +83,7 @@ public class BoardCtrl extends Proxy {
 		System.out.println("pager값들 : " + pager.toString());
 		
 
-//		List<Board> list = service.selectAllBoardCustomer(pager);
-		
+//		List<Board> list = service.selectAllBoardCustomer(pager);		
 //		if(ctype ==1) {
 //			List<Board> list = service.selectAllBoardCustomer(pager);
 //		} else if(ctype==2) {
@@ -96,37 +93,34 @@ public class BoardCtrl extends Proxy {
 //		}
 				
 		List<Board> list = null;
-
+		Function<PageProxy, List<Board>> f = null;
 		switch(pager.getCtype()) {
 		case "1" : 
-			Function<PageProxy, List<Board>> function1 = t -> boardMapper.selectAllBoardFAQ(t);
-			list = function1.apply(pager);
-//			list = service.selectAllBoardFAQ(pager);
+			f = t -> boardMapper.selectAllBoardFAQ(t);
+			list = f.apply(pager);
+
 			System.out.println("case1 list 값" + list);
 			break;
 			
 		case "3" : 
-			Function<PageProxy, List<Board>> function2 = t -> boardMapper.selectAllBoardCustomer(t);
-			list = function2.apply(pager);
-//			list = service.selectAllBoardCustomer(pager);
+		   f = t -> boardMapper.selectAllBoardCustomer(t);
+			list = f.apply(pager);
 			
 			break;
 			
 		case "4" : 
-			Function<PageProxy, List<Board>> function3 = t -> boardMapper.selectAllBoardNotice(t);
-			list = function3.apply(pager);
-//			list = service.selectAllBoardNotice(pager);
+			f = t -> boardMapper.selectAllBoardNotice(t);
+			list = f.apply(pager);
+
 			break;			
 		}		
 					
 		System.out.println("최종적으로 list 담긴값" + list);
 		box.clear();
 		box.put("list", list);
+		box.put("listSize", list.size());
 		box.put("pager", pager);
-//		map.clear();
-//		map.put("list", list);
-//		map.put("listSize", list.size());
-//		map.put("pager", pager);
+
 		return box.get();
 	}
 
@@ -134,15 +128,14 @@ public class BoardCtrl extends Proxy {
 	public Map<?, ?> contentView(@PathVariable String seq) {
 		System.out.println("contentView seq값 넘어옴 :" + seq);
 		
+		Consumer<String> consumer = t -> boardMapper.viewCntIncrease(Integer.parseInt(t));
+		consumer.accept(seq);
+		System.out.println("consumer.accept viewcnt 1증가에 담긴 값" + consumer );
+		
 		Function<String, Board> function = t -> boardMapper.selectBoardRead(Integer.parseInt(t));
 		box.clear();
 		box.put("read", function.apply(seq));
-//		map.clear();
-//		map.put("read", service.readBoard(Integer.parseInt(seq)));
 		
-		Consumer<String> consumer = t -> boardMapper.viewCntIncrease(Integer.parseInt(t));
-		consumer.accept(seq);
-		System.out.println("consumer.accept viewcnt 1증가에 담긴 값" + consumer);
 				
 		return box.get();
 	}
@@ -154,9 +147,7 @@ public class BoardCtrl extends Proxy {
 		consumer.accept(param);
 		box.clear();
 		box.put("msg", "UPDATE SUCCESS");
-//		service.updateBoard(param);
-//		map.clear();
-//		map.put("msg", "UPDATE SUCCESS");
+
 		return box.get();
 	}
 
@@ -167,9 +158,7 @@ public class BoardCtrl extends Proxy {
 		consumer.accept(seq);
 		box.clear();
 		box.put("msg", "DELETE SUCCESS");
-//		service.deleteBoard(Integer.parseInt(seq));
-//		map.clear();
-//		map.put("msg", "DELETE SUCCESS");
+
 
 		return box.get();
 	}
